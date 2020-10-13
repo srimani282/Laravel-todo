@@ -74,7 +74,11 @@ class TodoController extends Controller
 
    
     public function update(Request $request, $id)
-    {
+    { 
+        $validatedData = $request->validate([
+        'title' => 'required|min:10',
+        'description' => 'required|min:25',
+    ]);
         $input = $request->input();
 
         $userId = Auth::user()->id;
