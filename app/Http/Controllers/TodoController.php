@@ -28,6 +28,11 @@ class TodoController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'title' => 'required|min:10',
+            'description' => 'required|min:25',
+        ]);
+
         $userId = Auth::user()->id;
         $input = $request->input();
         $input['user_id'] = $userId;
